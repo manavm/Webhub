@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="jumbo">
+    <h2>Welcome to Tesla 2.0</h2>
+    
+
+
+
+<form method="POST" action="" name = "index">
+    {{ form.hidden_tag() }}
+    {{ form.queryType.label }} {{ form.queryType() }} <br>
+    {% if form.queryType.data == "pop_query" %}
+    {{ form.params.runOdom.label }} {{ form.params.runOdom()}} <br>
+    {{ form.params.days_in_field.label }} {{ form.params.days_in_field()}} <br>
+    {{ form.params.country_value.label }} {{ form.params.country_value()}} <br>
+    {% endif %}
+    <input type="submit" value="Go">
+</form>
+
+<canvas id="myCanvas" width="878" height="600"></canvas>
+
+<script type=text/javascript>
+      var canvas = document.getElementById("myCanvas");
+      var context = canvas.getContext("2d");
+      var imageObj = new Image();
+
+      imageObj.onload = function() {
+        context.drawImage(imageObj, 140, 50);
+      };
+      imageObj.src = "http://www.wired.com/images_blogs/autopia/2013/11/09122012-tesla-model-s-029edit.jpg";
+
+</script>
+
+<!--
+
+    <p>
+      Choose a Query:
+    <select name = "queryType">
+      <option value = ""> -- Select an Option --</option>
+      <option value = "vinQuery">Vin Query</option>
+      <option value = "popQuery">Population Query</option>
+      <option value = "sig_valueQuery">Signal Value Query</option>
+    </select>
+  </p>
+
+  	<div id = "vinForm">
+      <form action="/results" method="POST">
+      	Input Vin:	
+          <input type="text" name="vin_value"><br>
+          <input type="submit" name="my-form" value="Submit">
+      </form>
+    </div>
+
+    <div id = "popForm">
+      <form action="/results" method="POST">
+        Input Production Status Id: 
+          <input type="text" name="prod_status_id"><br>
+        Input Platform Id:
+          <input type="text" name="platform_id"><br>
+          <input type="submit" name="my-form" value="Submit">
+      </form>
+    </div>
+
+    <div id = "sigForm">
+      <form action="/results" method="POST">
+        Input Vid: 
+          <input type="text" name="vid"><br>
+        Input Signal Id:
+          <input type="text" name="signal_id"><br>
+        Input Signal Table Id:
+          <input type="text" name="signal_table_id"><br>  
+          <input type="submit" name="my-form" value="Submit">
+      </form>
+    </div>
+
+    
+      <form action = "/results" method = "POST">
+        <input type = "text" id = "selected" name = "queryType">
+      </form>
+    
+<canvas id="myCanvas" width="878" height="600"></canvas>
+  
+
+
+<script type=text/javascript>
+      var canvas = document.getElementById("myCanvas");
+      var context = canvas.getContext("2d");
+      var imageObj = new Image();
+
+      imageObj.onload = function() {
+        context.drawImage(imageObj, 140, 50);
+      };
+      imageObj.src = "http://www.wired.com/images_blogs/autopia/2013/11/09122012-tesla-model-s-029edit.jpg";
+
+
+$( document ).ready(function() {
+    $( "#vinForm, #popForm, #sigForm, #selectForm" ).hide();
+  });
+
+$("p select[name=queryType]").change(function(){
+  if ($("p select[name=queryType]").val() == ""){
+    $("#vinForm, #popForm, #sigForm, #selectForm").hide();
+  } 
+  if ($("p select[name=queryType]").val() == "vinQuery"){
+    
+    $("#selectForm").show();
+    $("#vinForm").show();
+  }else {
+    $("#vinForm").hide();
+  }
+});
+
+$("p select[name=queryType]").change(function(){
+  if ($("p select[name=queryType]").val() == "popQuery"){
+    $("#selected").attr("value", "popQuery")
+    $("#selected").show();
+    $("#popForm").show();
+  }else {
+    $("#popForm").hide();
+  }
+});
+
+$("p select[name=queryType]").change(function(){
+  if ($("p select[name=queryType]").val() == "sig_valueQuery"){
+    $("#selected").attr("value", "sig_valueQuery")
+    $("#selected").show();
+    $("#sigForm").show();
+  }else {
+    $("#sigForm").hide();
+  }
+});
+
+</script>
+-->
+
+  </div>
+{% endblock %}

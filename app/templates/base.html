@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TESLA</title>    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-bokeh-2.0.4.css') }}" type="text/css" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bokeh.css') }}" type="text/css" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/continuum.css') }}" type="text/css" />
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <script src="/static/js/moment.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bokeh.js') }}"></script>
+    <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+ </head>
+  <body>
+   
+    <header>
+
+      <div class="container">
+
+        <h1 onclick = "goHome()", class="logo", style = "cursor:pointer;">Tesla App</h1>
+        {% if g.user.is_authenticated() %}
+        &nbsp; <a href="{{ url_for('user', nickname = g.user.nickname) }}">Your Profile</a>
+        | <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+      </div>
+    </header> 
+     
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }} </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+     
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+     
+    <div id = "plot">
+      {{ snippet|safe }}
+    </div>
+
+  <script type=text/javascript src="{{
+  url_for('static', filename='jquery.js') }}">
+  </script>
+
+<script type=text/javascript>
+  function goHome()
+{
+    window.location = '/';   
+}
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+  </body>
+</html>

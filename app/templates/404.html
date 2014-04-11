@@ -1,0 +1,8 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>404 Error</h1>
+<p> I pity the fool that goes to a url that doesn't exist </p>
+<p><a href="{{url_for('index')}}">Back</a></p>
+{% endblock %}
